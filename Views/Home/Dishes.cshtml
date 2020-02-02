@@ -1,0 +1,30 @@
+@model List<Dish>
+
+
+<h1><a href="chefs">Chefs</a> & <a href="dishes">Dishes</a></h1>
+<h2>Yum, look at these amazing dishes!!</h2>
+<a asp-action="AddDish" asp-controller="Home">Add a Dish</a>
+
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Chef</th>
+            <th scope="col">Tastiness</th>
+            <th scope="col">Calories</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach( Dish d in Model)
+        {
+            <tr>
+                <td>@d.Name</td>
+                <td>@d.Creator.FirstName @d.Creator.LastName</td>
+                <td>@d.Tastiness</td>
+                <td>@d.Calories</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

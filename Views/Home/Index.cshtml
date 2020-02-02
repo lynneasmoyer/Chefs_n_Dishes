@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Chef>
+
+
+
+
+<h1><a href="chefs">Chefs</a> & <a href="dishes">Dishes</a></h1>
+<h2>Check out our roster of chefs!</h2>
+<a asp-action="AddChef" asp-controller="Home">Add a Chef</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Chef</th>
+            <th scope="col">Age</th>
+            <th scope="col">Number of Dishes</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach(Chef c in Model)
+            {
+            <tr>
+                <td>@c.FirstName @c.LastName</td>
+                <td>@{
+                    int age = @DateTime.Now.Year - @c.Birthday.Year;
+                    if(@c.Birthday.Date > DateTime.Now.AddYears(-age)) age--;
+                    }
+                    @age 
+                </td>
+                <td>@c.CreatedDishes.Count</td>
+            </tr>
+            }
+
+    </tbody>
+</table>
